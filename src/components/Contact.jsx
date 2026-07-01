@@ -1,36 +1,83 @@
-import React from 'react';
-import { Mail, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { name, email, message } = formData;
+    const subject = `New Portfolio Message from ${name}`;
+    const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+    window.location.href = `mailto:dhararp19@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+  };
+
   return (
-    <section id="contact" className="container section" style={{ paddingBottom: '2rem' }}>
-      <div className="glass-panel" style={{ textAlign: 'center', padding: '4rem 2rem', background: 'linear-gradient(180deg, var(--surface-color) 0%, rgba(99, 102, 241, 0.05) 100%)' }}>
-        <h2 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Let's <span className="text-gradient">Connect</span></h2>
-        <p style={{ color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 2rem auto' }}>
-          Have a data science project, an AI collaboration, or a new opportunity? I'd love to hear from you.
-        </p>
-        
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
-            <Mail color="var(--accent-secondary)" />
-            <span>dhararp19@gmail.com</span>
+    <section id="contact" className="section container reveal" style={{ borderTop: '1px solid var(--surface-border)', marginTop: '4rem' }}>
+      <div className="contact-two-col">
+        <div className="contact-info">
+          <h2 className="text-gradient" style={{ marginBottom: '1rem' }}>Let's Connect</h2>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: '2rem' }}>
+            Have a data science project, an AI collaboration, or a new opportunity? I'd love to hear from you.
+          </p>
+
+          <div className="contact-method">
+            <span>✉️</span> dhararp19@gmail.com
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--text-primary)' }}>
-            <MapPin color="var(--accent-tertiary)" />
-            <span>Available for remote work</span>
+          <div className="contact-method">
+            <span>📍</span> Nadiad, Gujarat, India
+          </div>
+
+          <div style={{ display: 'flex', gap: '1.5rem', marginTop: '2rem' }}>
+            <a href="https://github.com/Dhararp" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-primary)', textDecoration: 'underline', textUnderlineOffset: '4px' }}>GitHub</a>
+            <a href="https://www.linkedin.com/in/dhara-prajapati-3089132b1/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text-primary)', textDecoration: 'underline', textUnderlineOffset: '4px' }}>LinkedIn</a>
           </div>
         </div>
-        
-        <div style={{ marginTop: '3rem' }}>
-          <a href="mailto:dhararp19@gmail.com" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1.1rem' }}>
-            Get In Touch
-          </a>
+
+        <div className="contact-form glass-panel">
+          <form id="contact-form" onSubmit={handleSubmit}>
+            <input 
+              type="text" 
+              id="name" 
+              placeholder="Your Name" 
+              required 
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <input 
+              type="email" 
+              id="email" 
+              placeholder="Your Email" 
+              required 
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <textarea 
+              id="message" 
+              placeholder="Your Message" 
+              required 
+              value={formData.message}
+              onChange={handleChange}
+            />
+            <button type="submit" className="btn btn-primary" style={{ justifyContent: 'center' }}>Send Message</button>
+          </form>
         </div>
       </div>
-      
-      <footer style={{ textAlign: 'center', marginTop: '4rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-        <p>&copy; {new Date().getFullYear()} Dhara Rajeshbhai Prajapati. Designed with React & Vite.</p>
-      </footer>
+
+      <p style={{ color: 'rgba(255,255,255,0.3)', marginTop: '4rem', textAlign: 'center', fontSize: '0.9rem' }}>
+        &copy; {new Date().getFullYear()} Dhara Prajapati. All rights reserved.
+      </p>
     </section>
   );
 };
