@@ -12,7 +12,7 @@ try {
   if (fs.existsSync(newResumePath)) {
     const newResumeBuffer = fs.readFileSync(newResumePath)
     
-    // Force overwrite all copies (lowercase and uppercase in public and dist) with 1-page Resume.pdf buffer
+    // Synchronously overwrite public/resume.pdf, dist/Resume.pdf, and dist/resume.pdf with the newest 66.1 KB buffer
     fs.writeFileSync(path.resolve(__dirname, 'public/resume.pdf'), newResumeBuffer)
     
     const distDir = path.resolve(__dirname, 'dist')
@@ -21,7 +21,7 @@ try {
     }
     fs.writeFileSync(path.resolve(__dirname, 'dist/Resume.pdf'), newResumeBuffer)
     fs.writeFileSync(path.resolve(__dirname, 'dist/resume.pdf'), newResumeBuffer)
-    console.log('[Resume Sync] Successfully overwrote all resume files with 1-page Resume.pdf (67.8 KB)')
+    console.log('[Resume Sync] Successfully synced newest Resume.pdf (66.1 KB) across public and dist')
   }
 } catch (e) {
   console.error('[Resume Sync Error]', e)
