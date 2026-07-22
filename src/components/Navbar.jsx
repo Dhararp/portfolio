@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Code2 } from 'lucide-react';
+import { Code2, FileText } from 'lucide-react';
 
-const Navbar = ({ isLightMode, setIsLightMode }) => {
+const Navbar = ({ isLightMode, setIsLightMode, onOpenResume, resumePath }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -11,8 +11,6 @@ const Navbar = ({ isLightMode, setIsLightMode }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const resumePath = window.location.protocol === 'file:' ? './public/resume.pdf' : './resume.pdf';
 
   return (
     <nav style={{
@@ -31,7 +29,25 @@ const Navbar = ({ isLightMode, setIsLightMode }) => {
         <a href="#about" style={{ opacity: 0.8 }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8}>About</a>
         <a href="#skills" style={{ opacity: 0.8 }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8}>Skills</a>
         <a href="#projects" style={{ opacity: 0.8 }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8}>Projects</a>
-        <a href={resumePath} target="_blank" rel="noreferrer" download style={{ opacity: 0.8 }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8}>Resume</a>
+        <button 
+          onClick={onOpenResume}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'inherit',
+            font: 'inherit',
+            cursor: 'pointer',
+            padding: 0,
+            opacity: 0.8,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.3rem'
+          }}
+          onMouseOver={e => e.target.style.opacity = 1} 
+          onMouseOut={e => e.target.style.opacity = 0.8}
+        >
+          <FileText size={16} /> Resume
+        </button>
         <a href="#contact" style={{ opacity: 0.8 }} onMouseOver={e => e.target.style.opacity = 1} onMouseOut={e => e.target.style.opacity = 0.8}>Contact</a>
         <button 
           onClick={() => setIsLightMode(!isLightMode)} 

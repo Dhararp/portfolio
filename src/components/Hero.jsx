@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { FileText, Download } from 'lucide-react';
 
-const Hero = () => {
+const Hero = ({ onOpenResume, resumePath }) => {
   const [typedText, setTypedText] = useState('');
-  
+
   useEffect(() => {
     const titles = ["Full-Stack AI Engineer", "Data Scientist", "Python Developer"];
     let titleIndex = 0;
@@ -40,19 +41,23 @@ const Hero = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  const resumePath = window.location.protocol === 'file:' ? './public/resume.pdf' : './resume.pdf';
+  const activeResumePath = resumePath || (
+    window.location.protocol === 'file:'
+      ? `./public/Resume.pdf?t=${Date.now()}`
+      : `./Resume.pdf?t=${Date.now()}`
+  );
 
   return (
     <section className="hero container reveal hero-asymmetrical" id="hero">
       <div className="hero-left">
         <h1 className="animate-fade-in" style={{ fontSize: 'clamp(2.5rem, 4vw, 4rem)', marginBottom: '0.5rem' }}>
           Hi, I'm <span className="text-gradient">Dhara Prajapati</span><br />
-          <span 
-            style={{ 
-              fontSize: '0.8em', 
-              color: 'var(--text-primary)', 
-              borderRight: '2px solid var(--accent-primary)', 
-              paddingRight: '5px' 
+          <span
+            style={{
+              fontSize: '0.8em',
+              color: 'var(--text-primary)',
+              borderRight: '2px solid var(--accent-primary)',
+              paddingRight: '5px'
             }}
           >
             {typedText}
@@ -77,7 +82,23 @@ const Hero = () => {
         </p>
         <div className="hero-btns animate-fade-in delay-2" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a href="#projects" className="btn btn-primary">View My Work</a>
-          <a href={resumePath} target="_blank" rel="noreferrer" download className="btn btn-secondary">Download Resume</a>
+          <button
+            onClick={onOpenResume}
+            className="btn btn-secondary"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            <FileText size={18} /> Preview Resume
+          </button>
+          <a
+            href={activeResumePath}
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Dhara_Prajapati_Resume.pdf"
+            className="btn btn-secondary"
+            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+          >
+            <Download size={18} /> Download Resume
+          </a>
         </div>
       </div>
     </section>
