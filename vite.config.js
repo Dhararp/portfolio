@@ -8,11 +8,16 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 try {
-  const newResumePath = path.resolve(__dirname, 'public/resume-1.pdf')
-  if (fs.existsSync(newResumePath)) {
+  const resumeCandidates = [
+    path.resolve(__dirname, 'public/resume-1.pdf'),
+    path.resolve(__dirname, 'public/Resume-1.pdf'),
+  ]
+  const newResumePath = resumeCandidates.find((p) => fs.existsSync(p))
+  if (newResumePath) {
     const newResumeBuffer = fs.readFileSync(newResumePath)
     
-    // Synchronously keep Resume.pdf, resume.pdf, and dist copies synced with resume-1.pdf
+    // Synchronously keep resume-1.pdf, Resume.pdf, resume.pdf, and dist copies synced
+    fs.writeFileSync(path.resolve(__dirname, 'public/resume-1.pdf'), newResumeBuffer)
     fs.writeFileSync(path.resolve(__dirname, 'public/Resume.pdf'), newResumeBuffer)
     fs.writeFileSync(path.resolve(__dirname, 'public/resume.pdf'), newResumeBuffer)
     
