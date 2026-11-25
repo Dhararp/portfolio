@@ -14,12 +14,12 @@ function App() {
   });
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
-  // Dynamic cache-busting timestamp forces browser to fetch the new 1-page PDF
+  // Dynamic cache-busting timestamp forces browser to fetch the latest PDF
   const resumePath = useMemo(() => {
     const timestamp = Date.now();
     return window.location.protocol === 'file:' 
-      ? `./public/Resume.pdf?t=${timestamp}` 
-      : `./Resume.pdf?t=${timestamp}`;
+      ? `./public/resume-1.pdf?t=${timestamp}` 
+      : `./resume-1.pdf?t=${timestamp}`;
   }, []);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-/import React from 'react';
+import React from 'react';
 
 const Projects = () => {
   const projectList = [
@@ -9,9 +9,9 @@ const Projects = () => {
       link: 'https://github.com/Dhararp'
     },
     {
-      title: 'Movie Recommendation System',
-      description: 'A machine learning-based web application built with Flask and Python that suggests similar movies based on user selections. Features include MySQL integration for tracking search history and dynamic Matplotlib regression graphs to visualize search trends, combining recommendation logic with powerful data visualization.',
-      tags: ['Machine Learning', 'Flask', 'Data Analysis', 'Matplotlib'],
+      title: 'SmartGuard',
+      description: 'A blockchain-based smart contract integrity verification system featuring a Solidity contract (SmartGuard.sol) deployed via Hardhat on Ganache, a Python Flask & Web3.py REST API (/api/register, /api/verify, /api/logs, /api/health) for SHA-256 tamper detection (VERIFIED / TAMPERED / NOT_FOUND), and an interactive React + Vite + Tailwind CSS monitoring dashboard.',
+      tags: ['Solidity', 'Web3.py', 'Flask', 'React', 'Tailwind CSS'],
       link: 'https://github.com/Dhararp'
     },
     {

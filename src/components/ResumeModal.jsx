@@ -6,8 +6,8 @@ const ResumeModal = ({ isOpen, onClose, resumePath }) => {
 
   const activePath = resumePath || (
     window.location.protocol === 'file:' 
-      ? `./public/Resume.pdf?t=${Date.now()}` 
-      : `./Resume.pdf?t=${Date.now()}`
+      ? `./public/resume-1.pdf?t=${Date.now()}` 
+      : `./resume-1.pdf?t=${Date.now()}`
   );
 
   return (
