@@ -12,7 +12,7 @@ const Projects = () => {
       title: 'SmartGuard',
       description: 'A blockchain-based smart contract integrity verification system featuring a Solidity contract (SmartGuard.sol) deployed via Hardhat on Ganache, a Python Flask & Web3.py REST API (/api/register, /api/verify, /api/logs, /api/health) for SHA-256 tamper detection (VERIFIED / TAMPERED / NOT_FOUND), and an interactive React + Vite + Tailwind CSS monitoring dashboard.',
       tags: ['Solidity', 'Web3.py', 'Flask', 'React', 'Tailwind CSS'],
-      link: 'https://github.com/Dhararp'
+      link: 'https://github.com/Dhararp/SmartGuard'
     },
     {
       title: 'Customer Segmentation Analysis',
